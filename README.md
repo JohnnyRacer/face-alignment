@@ -1,4 +1,4 @@
-# Face Recognition
+# Face Recognition (pytorch XLA on TPU) WIP
 
 Detect facial landmarks from Python using the world's most accurate face alignment network, capable of detecting points in both 2D and 3D coordinates.
 
