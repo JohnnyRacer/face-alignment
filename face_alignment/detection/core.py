@@ -18,7 +18,7 @@ class FaceDetector(object):
     def __init__(self, device, verbose):
         self.device = device
         self.verbose = verbose
-
+"""
         if verbose:
             if 'cpu' in device:
                 logger = logging.getLogger(__name__)
@@ -28,7 +28,7 @@ class FaceDetector(object):
             if verbose:
                 logger.error("Expected values for device are: {cpu, cuda, xla} but got: %s", device)
             raise ValueError
-
+"""
     def detect_from_image(self, tensor_or_path):
         """Detects faces in a given image.
 
