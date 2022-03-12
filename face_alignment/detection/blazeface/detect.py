@@ -11,7 +11,7 @@ def detect(net, img, device):
     H, W, C = img.shape
     orig_size = min(H, W)
     img, (xshift, yshift) = resize_and_crop_image(img, 256)
-    preds = net.predict_on_image(img)
+    preds = net.predict_on_image(img).detach().cpu()
 
     if 0 == len(preds):
         return [[]]
