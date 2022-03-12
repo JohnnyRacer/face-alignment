@@ -235,7 +235,16 @@ class BlazeFace(nn.Module):
         assert(self.anchors.ndimension() == 2)
         assert(self.anchors.shape[0] == self.num_anchors)
         assert(self.anchors.shape[1] == 4)
-
+        
+    def load_anchors_from_npy(self, arr, device=None):
+        device = device or self._device()
+        self.anchors = torch.tensor(
+            arr, dtype=torch.float32, device=device)
+        assert(self.anchors.ndimension() == 2)
+        assert(self.anchors.shape[0] == self.num_anchors)
+        assert(self.anchors.shape[1] == 4)
+       
+     
     def _preprocess(self, x):
         """Converts the image pixels to the range [-1, 1]."""
         return x.float() / 127.5 - 1.0
