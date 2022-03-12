@@ -10,7 +10,7 @@ from .utils import *
 def detect(net, img, device):
     H, W, C = img.shape
     orig_size = min(H, W)
-    img, (xshift, yshift) = resize_and_crop_image(img, 128)
+    img, (xshift, yshift) = resize_and_crop_image(img, 256)
     preds = net.predict_on_image(img)
 
     if 0 == len(preds):
@@ -41,7 +41,7 @@ def batch_detect(net, img_batch, device):
 
     img_batch = img_batch.transpose((0, 2, 3, 1))
 
-    imgs, (xshift, yshift) = resize_and_crop_batch(img_batch, 128)
+    imgs, (xshift, yshift) = resize_and_crop_batch(img_batch, 256)
     preds = net.predict_on_batch(imgs)
     bboxlists = []
     for pred in preds:
