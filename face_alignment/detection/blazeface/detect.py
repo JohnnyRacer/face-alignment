@@ -10,7 +10,15 @@ from .utils import *
 def detect(net, img, device):
     H, W, C = img.shape
     orig_size = min(H, W)
+    img = np.pad(img, pad_width=[(4, 4),(3, 3),(0, 0)], mode='constant') #Make the image non square
     img, (xshift, yshift) = resize_and_crop_image(img, 256)
+    print(f"Blaze preconv face {img.shape} " )
+    """
+        if np.min(img.shape) < 256:
+        pad_amt = 256 - (np.min(img.shape))
+        
+        img, (xshift, yshift) = resize_and_crop_image(img, 256)
+    """
     preds = net.predict_on_image(img).detach().cpu()
 
     if 0 == len(preds):
